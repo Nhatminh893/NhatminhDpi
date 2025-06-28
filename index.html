@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Dpi config</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e0e0e;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #content {
+      display: none;
+      text-align: center;
+    }
+    #login {
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+
+<div id="login">
+  <h2>Nhập mật khẩu để truy cập Dpi config</h2>
+  <input type="password" id="password" placeholder="Nhập mật khẩu..." />
+  <br>
+  <button onclick="checkPassword()">Vào trang</button>
+  <p id="error" style="color:red;"></p>
+</div>
+
+<div id="content">
+  <h1>🎉 Chào mừng đến với Dpi config!</h1>
+  <p>Nội dung bí mật ở đây...</p>
+</div>
+
+<script>
+  const correctPassword = "123456"; // 🔒 Đặt mật khẩu tại đây
+
+  function checkPassword() {
+    const input = document.getElementById("password").value;
+    if (input === correctPassword) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    } else {
+      document.getElementById("error").textContent = "Sai mật khẩu, thử lại.";
+    }
+  }
+</script>
+
+</body>
+</html>
