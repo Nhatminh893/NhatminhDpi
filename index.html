@@ -15,40 +15,322 @@
       height: 100vh;
       margin: 0;
     }
+
     h1 {
-      font-size: 32px;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    input[type="password"] {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
       margin-bottom: 10px;
     }
-    p {
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
+
     button {
-      background-color: #1e90ff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 24px;
-      margin: 6px;
+      padding: 8px 20px;
       font-size: 16px;
+      border: none;
+      background: #1e90ff;
+      color: white;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
-    button:hover {
-      background-color: #0077cc;
+
+    .switch-container {
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+      margin-left: 10px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #1e90ff;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    #configArea {
+      display: none;
+    }
+
+    #error {
+      color: red;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
-  <h1>🎉 Chào mừng đến với Dpi config!</h1>
-  <p>Nội dung bí mật ở đây...</p>
-
-  <div>
-    <button>Nhẹ tâm</button>
-    <button>Aim ẩn</button>
-    <button>Nhạy game</button>
-    <button>Buff Hz</button>
-    <button>Buff FPS</button>
+  <div id="loginArea">
+    <h1>🔒 Nhập mật khẩu để xem config</h1>
+    <input type="password" id="password" placeholder="Mật khẩu...">
+    <button onclick="checkPassword()">Vào</button>
+    <div id="error"></div>
   </div>
+
+  <div id="configArea">
+    <h1>🎉 Chào mừng đến với Dpi config!</h1>
+
+    <div class="switch-container">
+      Nhẹ tâm
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      Aim ẩn
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      Nhạy game
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      Buff Hz
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      Buff FPS
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const pass = document.getElementById("password").value;
+      const correct = "1234"; // 🔐 Đổi mật khẩu tại đây nếu muốn
+
+      if (pass === correct) {
+        document.getElementById("loginArea").style.display = "none";
+        document.getElementById("configArea").style.display = "flex";
+      } else {
+        document.getElementById("error").innerText = "❌ Sai mật khẩu!";
+      }
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Dpi config</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e0e0e;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    input[type="password"] {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 8px 20px;
+      font-size: 16px;
+      border: none;
+      background: #1e90ff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .switch-container {
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+      margin-left: 10px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #1e90ff;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    #configArea {
+      display: none;
+    }
+
+    #error {
+      color: red;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="loginArea">
+    <h1>🔒 Nhập mật khẩu để xem config</h1>
+    <input type="password" id="password" placeholder="Mật khẩu...">
+    <button onclick="checkPassword()">Vào</button>
+    <div id="error"></div>
+  </div>
+
+  <div id="configArea">
+    <h1>🎉 Chào mừng đến với Dpi config!</h1>
+
+    <div class="switch-container">
+      Nhẹ tâm
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      Aim ẩn
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      Nhạy game
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      Buff Hz
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      Buff FPS
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const pass = document.getElementById("password").value;
+      const correct = "1234"; // 🔐 Đổi mật khẩu tại đây nếu muốn
+
+      if (pass === correct) {
+        document.getElementById("loginArea").style.display = "none";
+        document.getElementById("configArea").style.display = "flex";
+      } else {
+        document.getElementById("error").innerText = "❌ Sai mật khẩu!";
+      }
+    }
+  </script>
 </body>
 </html>
