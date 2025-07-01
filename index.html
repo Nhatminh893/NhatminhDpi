@@ -1,71 +1,94 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Dpi config</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dpi Config</title>
   <style>
     body {
-      background: #0e0e0e;
-      color: white;
+      margin: 0;
       font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      text-align: center;
     }
+
     h1 {
-      font-size: 2rem;
+      font-size: 2em;
       margin-bottom: 10px;
     }
-    input, button {
-      padding: 10px;
-      margin: 10px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-    .hidden {
-      display: none;
-    }
-    .buttons button {
+
+    .button {
       background-color: #1e90ff;
       color: white;
-      cursor: pointer;
+      border: none;
+      padding: 10px 20px;
       margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
     }
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+
+    .button:hover {
+      background-color: #0077cc;
+    }
+
+    #config-buttons {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #password-section {
+      margin-top: 20px;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      margin-right: 10px;
+    }
+
+    #error-message {
+      color: red;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <h1>🎉 Chào mừng đến với Dpi config!</h1>
-  <div id="login">
+
+  <div id="password-section">
     <input type="password" id="password" placeholder="Nhập mật khẩu..." />
-    <button onclick="checkPassword()">Vào</button>
+    <button class="button" onclick="checkPassword()">Mở khóa</button>
+    <div id="error-message"></div>
   </div>
 
-  <div id="secret" class="hidden">
-    <div class="buttons">
-      <button>Nhẹ tâm</button>
-      <button>Aim ẩn</button>
-      <button>Nhạy game</button>
-      <button>Buff Hz</button>
-      <button>Buff FPS</button>
-    </div>
+  <div id="config-buttons">
+    <button class="button">Nhẹ tâm</button>
+    <button class="button">Aim ẩn</button>
+    <button class="button">Nhạy game</button>
+    <button class="button">Buff Hz</button>
+    <button class="button">Buff FPS</button>
   </div>
 
   <script>
     function checkPassword() {
-      const pass = document.getElementById("password").value;
-      if (pass === "1234") {
-        document.getElementById("login").classList.add("hidden");
-        document.getElementById("secret").classList.remove("hidden");
+      const input = document.getElementById("password").value;
+      const correct = "1234"; // đổi mật khẩu tại đây nếu cần
+      const error = document.getElementById("error-message");
+
+      if (input === correct) {
+        document.getElementById("password-section").style.display = "none";
+        document.getElementById("config-buttons").style.display = "block";
       } else {
-        alert("Sai mật khẩu!");
+        error.textContent = "❌ Sai mật khẩu. Vui lòng thử lại!";
       }
     }
   </script>
