@@ -6,91 +6,120 @@
   <title>Dpi Config</title>
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
       background-color: #111;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      color: #fff;
+      font-family: Arial, sans-serif;
       text-align: center;
+      padding-top: 100px;
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 36px;
       margin-bottom: 10px;
     }
 
-    .button {
-      background-color: #1e90ff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 5px;
-      border-radius: 6px;
+    .toggle-container {
+      background: #222;
+      border: 2px solid #00c287;
+      border-radius: 20px;
+      padding: 15px 30px;
+      margin: 20px auto;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 12px #00c28766;
+    }
+
+    .toggle-label {
+      font-size: 20px;
+      margin-right: 20px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
       cursor: pointer;
-      font-size: 16px;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
     }
 
-    .button:hover {
-      background-color: #0077cc;
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
     }
 
-    #config-buttons {
-      display: none;
-      margin-top: 20px;
+    input:checked + .slider {
+      background-color: #00e99d;
     }
 
-    #password-section {
-      margin-top: 20px;
-    }
-
-    input[type="password"] {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: none;
-      margin-right: 10px;
-    }
-
-    #error-message {
-      color: red;
-      margin-top: 10px;
+    input:checked + .slider:before {
+      transform: translateX(22px);
     }
   </style>
 </head>
 <body>
   <h1>🎉 Chào mừng đến với Dpi config!</h1>
 
-  <div id="password-section">
-    <input type="password" id="password" placeholder="Nhập mật khẩu..." />
-    <button class="button" onclick="checkPassword()">Mở khóa</button>
-    <div id="error-message"></div>
+  <div class="toggle-container">
+    <span class="toggle-label">Nhẹ tâm</span>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider"></span>
+    </label>
   </div>
 
-  <div id="config-buttons">
-    <button class="button">Nhẹ tâm</button>
-    <button class="button">Aim ẩn</button>
-    <button class="button">Nhạy game</button>
-    <button class="button">Buff Hz</button>
-    <button class="button">Buff FPS</button>
+  <div class="toggle-container">
+    <span class="toggle-label">Aim ẩn</span>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider"></span>
+    </label>
   </div>
 
-  <script>
-    function checkPassword() {
-      const input = document.getElementById("password").value;
-      const correct = "1234"; // đổi mật khẩu tại đây nếu cần
-      const error = document.getElementById("error-message");
+  <div class="toggle-container">
+    <span class="toggle-label">Nhạy game</span>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider"></span>
+    </label>
+  </div>
 
-      if (input === correct) {
-        document.getElementById("password-section").style.display = "none";
-        document.getElementById("config-buttons").style.display = "block";
-      } else {
-        error.textContent = "❌ Sai mật khẩu. Vui lòng thử lại!";
-      }
-    }
-  </script>
+  <div class="toggle-container">
+    <span class="toggle-label">Buff Hz</span>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-container">
+    <span class="toggle-label">Buff FPS</span>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider"></span>
+    </label>
+  </div>
 </body>
 </html>
